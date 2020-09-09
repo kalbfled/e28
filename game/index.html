@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- Copyright 2020 David J. Kalbfleisch -->
+
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hi-Low</title>
+        <style>
+            body { background-color: black; }
+            h1, p { color: white; }
+        </style>
+    </head>
+
+    <body>
+        <h1>Hi-Low</h1>
+        <p>I'm thinking of a supersecret number between 0 and <span id="high">X</span> (inclusive).  You have <span id="attempts">Y</span> attempts to guess it.</p>
+        <input id="integer" placeholder="integer"> <button id="submit_button" type="submit">Guess</button>
+
+        <script>
+            "use strict";
+
+            const high = 10;
+            document.getElementById("high").innerText = String(high);
+
+            var attempts = 3;
+            document.getElementById("attempts").innerText = String(attempts);
+
+            var supersecret_number = Math.round(Math.random(5) * high);
+            console.debug("supersecret_number = " + supersecret_number);
+
+            function append_message(message, message_color)
+            {
+                var p = document.createElement("p");
+                p.innerText = message;
+                p.style.color = message_color;
+                document.body.appendChild(p);
+            }
+
+            function guess()
+            {
+                var guessed = document.getElementById("integer").value;
+                console.debug("Guessed " + guessed);
+                guessed = Number(guessed);
+
+                if (guessed === supersecret_number)
+                {
+                    append_message("You guessed the supersecret number!", "green");
+                    document.getElementById("submit_button").removeEventListener("click", guess);
+                    console.debug("Removed the onClick listener.");
+                }
+                else
+                {
+                    attempts -= 1;
+                    document.getElementById("attempts").innerText = String(attempts);
+
+                    if (attempts < 1)
+                    {
+                        append_message("You're out of guesses.  Life is cruel.", "red");
+                        document.getElementById("submit_button").removeEventListener("click", guess);
+                        console.debug("Removed the onClick listener.");
+                    }
+                    else if (guessed > supersecret_number)
+                        append_message("Lower than " + guessed, "white");
+                    else
+                    {
+                        append_message("Higher than " + guessed, "white");
+                        console.assert(guessed < supersecret_number);
+                    }
+                }
+            }
+
+            document.getElementById("submit_button").addEventListener("click", guess);
+        </script>
+    </body>
+</html>
