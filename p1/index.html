@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- Copyright 2020 David J. Kalbfleisch -->
+
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Project 1 | High-Low</title>
+        <link href="p1.css" rel="stylesheet">
+
+        <!-- Vue2 development -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+        <script src="p1.js" defer></script>
+    </head>
+
+    <body>
+        <h1>High-Low</h1>
+        <div id="app" v-cloak>
+            <highlow-score :victories="victories" :defeats="defeats"></highlow-score>
+
+            <p>I'm thinking of a supersecret number between 0 and {{ high }} (inclusive).  You have {{ attempts }} guess{{ guess_plural }} remaining.</p>
+            <input v-model.number="current_guess" placeholder="integer"> <button @click="make_guess" type="submit" :disabled="gameover">Guess</button>
+
+            <p v-for="guess in guesses"><span :class="guess_class(guess)">{{ guess_feedback(guess) }}</span></p>
+            <p v-if="attempts < 1"><span class="incorrect">You're out of guesses.  Life is cruel.</span></p>
+
+            <div v-if="gameover">
+                <button @click="restart_game" type="submit">Play Again</button>
+                <button @click="reset_game" type="submit">Reset</button>
+                <h2>History</h2>
+                <ul>
+                    <li v-for="(v, k) in history">The {{ v }} won game {{ k }}.</li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+[v-cloak] { display: none; }
+
+body { background-color: black; }
+
+h1, h2, p, li { color: white; }
+
+.correct { background-color: green; }
+
+.incorrect { background-color: red; }
+
+div.score
+{
+    display: inline-block;
+    border: dashed thin white;
+    padding: 10px;
+}
+
