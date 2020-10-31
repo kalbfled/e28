@@ -6,4 +6,6 @@ Week | Directory | Live url
 -----|-----------|---------
 2 | game |
 7 | p1 | [Project 1](https://e28p1.davejk.me)
+9 | zipfoods |
+11 | p2 | [Project 2](https://e28p2.davejk.me)
 
