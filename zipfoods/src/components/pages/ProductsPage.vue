@@ -10,13 +10,12 @@
 </template>
 
 <script>
-import {products} from "@/products.js";
-
 export default {
     name: '',
+    props: ["products"],
     data() {
         return {
-            products: products,
+
         };
     }
 };

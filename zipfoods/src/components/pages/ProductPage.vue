@@ -1,23 +1,33 @@
 <template>
     <div>
-        <show-product :product="products[id - 1]"></show-product>
+        <p v-if="productNotFound">Product {{ id }} not found.</p>
+        <show-product v-else :product="products[id - 1]"></show-product>
     </div>
 </template>
 
 <script>
 import ShowProduct from "@/components/ShowProduct.vue";
-import {products} from "@/products.js";
 
 export default {
     name: '',
     components: {
         "show-product": ShowProduct,
     },
-    props: ["id"],
+    props: ["id", "products"],
     data() {
         return {
-            products: products,
+
         };
+    },
+    computed: {
+        product() {
+            return this.products.filter(
+                (product) => { return product.id == this.id; },
+                this.id)[0];
+        },
+        productNotFound() {
+            return this.product == null;
+        }
     }
 };
 </script>
