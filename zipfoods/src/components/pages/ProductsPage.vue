@@ -12,11 +12,16 @@
 <script>
 export default {
     name: '',
-    props: ["products"],
+//    props: ["products"],
     data() {
         return {
 
         };
+    },
+    computed: {
+        products() {
+            return this.$store.state.products;
+        }
     }
 };
 </script>

@@ -20,26 +20,32 @@
 </template>
 
 <script>
-import { axios } from "@/app.js";
+//import { axios } from "@/common/app.js";
 
 export default {
     name: 'App',
     data() {
         return {
             products: [],
-            links: ["home", "products", "categories"],
+            links: ["home", "products", "categories", "add a product", "account", "cart"],
             paths: {
                 home: '/',
                 products: "/products",
                 categories: "/categories",
+                "add a product": "/products/new",
+                account: "/account",
+                cart: "/cart",
             },
         };
     },
     mounted() {
-        axios.get("/product").then((response) => {
-            this.products = response.data.product;
-            console.log(response);
-        });
+        this.$store.dispatch("fetchProducts");
+//        axios.get("/product").then((response) => {
+//            this.products = response.data.product;
+//            console.log(response);
+//        });
+
+        this.$store.dispatch("authUser");
     }
 };
 </script>

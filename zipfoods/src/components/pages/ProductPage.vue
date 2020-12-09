@@ -1,7 +1,7 @@
 <template>
     <div>
         <p v-if="productNotFound">Product {{ id }} not found.</p>
-        <show-product v-else :product="products[id - 1]"></show-product>
+        <show-product v-else :product="product"></show-product>
     </div>
 </template>
 
@@ -13,7 +13,8 @@ export default {
     components: {
         "show-product": ShowProduct,
     },
-    props: ["id", "products"],
+//    props: ["id", "products"],
+    props: ["id"],
     data() {
         return {
 
@@ -21,9 +22,10 @@ export default {
     },
     computed: {
         product() {
-            return this.products.filter(
-                (product) => { return product.id == this.id; },
-                this.id)[0];
+            return this.$store.getters.getProductById(this.id);
+//            return this.products.filter(
+//                (product) => { return product.id == this.id; },
+//                this.id)[0];
         },
         productNotFound() {
             return this.product == null;
