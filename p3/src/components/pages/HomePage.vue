@@ -9,6 +9,9 @@
             <p><a href='' @click="logout">Logout</a></p>
         </div>
 
+        <!-- TODO - Because I have not included a "form" element, input validation is not enforced.
+            This let's people register without entering any information. -->
+        <!-- TODO - The logged-in state is not retained after refreshing the browser. -->
         <div v-else>
             <h3>Login or Register</h3>
 
@@ -19,7 +22,7 @@
             <br>
 
             <label for="password">Password (8-100)</label>
-            <input id="password" name="password" min="8" max="100" required>
+            <input type="password" id="password" name="password" min="8" max="100" required>
             <br>
 
             <input type="submit" value="Login" @click="login">
