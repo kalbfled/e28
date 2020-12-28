@@ -2,7 +2,7 @@
 
 This is my coursework for Harvard Extension School course DGMD E-28 (Fall 2020).  Weekly assignments are organized by directory.
 
-Week | Directory | Live url
+Week | Directory | Url*
 -----|-----------|---------
 2 | game |
 7 | p1 | [Project 1](https://e28p1.davejk.me)
@@ -10,3 +10,4 @@ Week | Directory | Live url
 11 | p2 | [Project 2](https://e28p2.davejk.me)
 15 | p3 | [Project 3](https://e28p3.davejk.me)
 
+* I completed the course.  These links are not active unless I turn them on again.
